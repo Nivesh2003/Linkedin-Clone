@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar1() {
   return (
@@ -17,10 +18,10 @@ function Navbar1() {
         {/* Right side */}
         <div className="flex box-border md:gap-4 gap-2 justify-center items-center">
             <div className="md:px-3 md:py-2 box-border text-lg text-black rounded-3xl hover:bg-gray-200 cursor-pointer">
-                Join now
+               <Link to={'/signup'}>Join now</Link> 
             </div>
             <div className="px-3 py-2 box-border border-1 text-lg text-blue-800 border-blue-800 rounded-3xl  hover:bg-blue-50 cursor-pointer">
-                Sign in
+               <Link to={'/login'}> Sign in</Link>
             </div>
         </div>
     </nav>

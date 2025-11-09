@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom';
 function Landingpage() {
   return (
     <div className='my-4 py-[50px] md:py-[120px] px-5 md:flex justify-between'>
@@ -18,7 +18,7 @@ function Landingpage() {
                 By clicking Agree & Join, you agree to the LinkedIn <span className="text-blue-800 cursor-pointer hover:underline">User Agreement</span>, <span className="text-blue-800 cursor-pointer hover:underline">Privacy Policy</span>, and <span className="text-blue-800 cursor-pointer hover:underline">Cookie Policy</span>.
             </div>
             <div className="mx-auto text-3xl text-center mb-4 text-lg w-[70%] mt-4">
-                New to LinkedIn? <span className="text-blue-800 cursor-pointer hover:underline">Join now</span>
+                New to LinkedIn? <span className="text-blue-800 cursor-pointer hover:underline"><Link to={'/signup'}>Join now</Link></span>
             </div>
         </div>
         <div className="md:w-[50%] h-120">

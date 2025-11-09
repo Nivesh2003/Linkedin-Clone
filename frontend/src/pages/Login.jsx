@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Googlelogincomponent from '../components/GoogleLogin/Googlelogincomponent'
 
 function Login() {
     return (
         <div className='w-full flex flex-col items-center justify-center'>
             <div className='w-[85%] md:w-[28%] shadow-xl rounded-sm box p-10'>
                 <div className="text-3xl text-center">Sign In</div>
-                <div className="my-3">Google login button</div>
+                <div className="my-3">
+                    <Googlelogincomponent/>
+                </div>
                 {/* Divider */}
                 <div className="flex flex-row items-center gap-2">
                     <div className="border-b-1 border-gray-400 w-[45%] " />or <div className="border-b-1 border-gray-400 w-[45%] " />

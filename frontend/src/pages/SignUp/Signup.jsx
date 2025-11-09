@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Googlelogincomponent from '../../components/GoogleLogin/Googlelogincomponent'
 
 function Signup() {
   return (
@@ -30,12 +31,12 @@ function Signup() {
           </div>
         </div>
         </form>
-        
+
         {/* Google sign in */}
         <div className="flex flex-row items-center gap-2">
           <div className="border-b-1 border-gray-400 w-[45%] "/>or <div className="border-b-1 border-gray-400 w-[45%] "/>
         </div>
-        <div>Google login button</div>
+        <Googlelogincomponent/>
       </div>
        
        <div className="mt-4 mb-10">Already on LinkedIn? <Link to={'/login'}><span className='text-blue-800 hover:underline cursor-pointer'>Sign In</span></Link></div>

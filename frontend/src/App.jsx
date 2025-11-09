@@ -6,15 +6,16 @@ import Landingpage from './pages/Landingpage/Landingpage'
 import Footer from './components/Footer/Footer'
 import Signup from './pages/SignUp/Signup';
 import Login from './pages/Login';
+import Navbar2 from './components/NavbarV2/Navbar2';
 
 function App() {
-
+const isLogin = false;
 
   return (
     <>
      {/* Outer start */}
      <div className='bg-gray-100 w-[100%] h-[100%] box-border'>
-      <Navbar1 />
+      {isLogin ? <Navbar2/> : <Navbar1/>}
       <Routes>
         <Route path='/' element={<Landingpage/>}/>
         <Route path='/signup' element={<Signup/>}/>

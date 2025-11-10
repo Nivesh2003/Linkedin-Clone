@@ -41,14 +41,18 @@ function Navbar2() {
                     <div className={`text-sm text-gray-500 ${location.pathname==='/mynetwork'?"border-b-3":""}`}>My Network</div>
                 </div>
                 </Link>
+                <Link to={'/resume'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <WorkIcon sx={{color:location.pathname==='/resume'?"black":"grey"}}/>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/resume'?"border-b-3":""}`}>Resume</div>
                 </div>
+                </Link>
+                <Link to={'/message'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <MessageIcon sx={{color:location.pathname==='/messages'?"black":"grey"}}/>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/messages'?"border-b-3":""}`}>Message</div>
                 </div>
+                </Link>
                 <div className="flex flex-col items-center cursor-pointer">
                     <div><NotificationsIcon sx={{color:location.pathname==='/notification'?"black":"grey"}}/> <span className='p-1 rounded-full text-sm bg-red-700 text-white'>1</span></div>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/notification'?"border-b-3":""}`}>Notifications</div>

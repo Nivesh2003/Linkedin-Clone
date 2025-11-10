@@ -31,14 +31,16 @@ function Navbar2() {
 
             {/* right side strt */}
             <div className="hidden gap-10 md:flex">
-                <div className="flex flex-col items-center cursor-pointer">
+            <Link to={'/feeds'}><div className="flex flex-col items-center cursor-pointer">
                     <HomeIcon sx={{color:location.pathname==='/feeds'?"black":"grey"}}/>
-                    <div className={`text-sm text-gray-500 ${location.pathname==='/feeds'?"border-b-3":""}`}>Home</div>
-                </div>
+                   <div className={`text-sm text-gray-500 ${location.pathname==='/feeds'?"border-b-3":""}`}>Home</div>
+                </div> </Link>
+                <Link to={'/mynetwork'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <GroupIcon sx={{color:location.pathname==='/mynetwork'?"black":"grey"}}/>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/mynetwork'?"border-b-3":""}`}>My Network</div>
                 </div>
+                </Link>
                 <div className="flex flex-col items-center cursor-pointer">
                     <WorkIcon sx={{color:location.pathname==='/resume'?"black":"grey"}}/>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/resume'?"border-b-3":""}`}>Resume</div>

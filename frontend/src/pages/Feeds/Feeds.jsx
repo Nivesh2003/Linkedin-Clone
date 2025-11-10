@@ -5,6 +5,7 @@ import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import FeedIcon from '@mui/icons-material/Feed';
 import Advertisement from '../../components/Cards/Advertisement';
+import Posts from './Posts';
 function Feeds() {
   return (
     <div className='px-5 xl:px-50 py-9 flex gap-5 w-full mt-5 bg-gray-100'>
@@ -49,10 +50,11 @@ function Feeds() {
 
             {/* Posts section */}
             <div className="w-full flex flex-col gap-5">
-                posts
+                <Posts/>
             </div>
             {/* Posts section */}
         </div>
+        {/* middle end */}
 
         {/* rigjt side s*/}
         <div className='w-[26%] py-5 hidden md:block'>

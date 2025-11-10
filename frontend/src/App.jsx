@@ -5,7 +5,7 @@ import Navbar1 from './components/NavbarV1/Navbar1'
 import Landingpage from './pages/Landingpage/Landingpage'
 import Footer from './components/Footer/Footer'
 import Signup from './pages/SignUp/Signup';
-import Login from './pages/Login';
+import Login from './pages/SignUp/Login';
 import Navbar2 from './components/NavbarV2/Navbar2';
 import Feeds from './pages/Feeds/Feeds';
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Googlelogincomponent from '../components/GoogleLogin/Googlelogincomponent'
+import Googlelogincomponent from '../../components/GoogleLogin/Googlelogincomponent'
 
 function Login() {
     return (

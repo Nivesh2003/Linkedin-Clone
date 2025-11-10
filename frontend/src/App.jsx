@@ -7,9 +7,10 @@ import Footer from './components/Footer/Footer'
 import Signup from './pages/SignUp/Signup';
 import Login from './pages/Login';
 import Navbar2 from './components/NavbarV2/Navbar2';
+import Feeds from './pages/Feeds/Feeds';
 
 function App() {
-const isLogin = false;
+const isLogin = true;
 
   return (
     <>
@@ -20,6 +21,7 @@ const isLogin = false;
         <Route path='/' element={<Landingpage/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/feeds' element={<Feeds/>}/>
       </Routes>
     
       <Footer/>

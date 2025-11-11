@@ -14,7 +14,7 @@ function Navbar2() {
         <div className="bg-white h-13 flex justify-between py-1 px-5 xl:px-50 fixed top-0 w-[100%] z-1000">
             <div className="flex gap-2 items-center">
                 <div>
-                    <img className="w-8 h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/500px-LinkedIn_logo_initials.png" alt="" />
+                   <Link to={'/feeds'}><img className="w-8 h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/500px-LinkedIn_logo_initials.png" alt="" /> </Link>
                 </div>
                 {/* search bar s */}
                 <div className='relative'>
@@ -57,10 +57,12 @@ function Navbar2() {
                     <div><NotificationsIcon sx={{color:location.pathname==='/notification'?"black":"grey"}}/> <span className='p-1 rounded-full text-sm bg-red-700 text-white'>1</span></div>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/notification'?"border-b-3":""}`}>Notifications</div>
                 </div>
+                <Link to={'/profile/1'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="" className='rounded-full w-7 h-7'/>
                     <div className="text-sm text-gray-500">Me</div>
                 </div>
+                </Link>
             </div>
         </div>
     )

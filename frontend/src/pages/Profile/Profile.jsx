@@ -1,6 +1,8 @@
 import React from 'react'
 import Advertisement from '../../components/Cards/Advertisement'
 import Card from '../../components/Cards/Card'
+import Posts from '../../pages/Feeds/Posts'
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 function Profile() {
   return (
@@ -70,8 +72,53 @@ function Profile() {
                     </Card>
                 </div>
 
+                {/* ACtivity card */}
+                <div className="mt-5">
+                    <Card padding={1}>
+                       <div className="flex justify-between items-center">
+                            <div className='text-xl'>Activities</div>
+                        </div>
+                        <div className="cursor-pointer px-3 py-1 w-fit border-1 rounded-4xl bg-green-800 text-white font-semibold">Posts</div>
+
+                        {/* parent div for scrollable activities */}
+                        <div className="overflow-x-auto my-2 flex gap-1 overflow-y-hidden w-full">
+                            <div className='cursor-pointer shrink-0 w-[350px]'>
+                                <Posts profile={1}/>
+                            </div>
+                            <div className='cursor-pointer shrink-0 w-[350px]'>
+                                <Posts profile={1}/>
+                            </div>
+                            <div className='cursor-pointer shrink-0 w-[350px]'>
+                                <Posts profile={1}/>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+
                 {/* experience card */}
-                
+                <div className="mt-5">
+                    <Card padding={1}>
+                    <div className="flex justify-between items-center">
+                            <div className='text-xl'>Experience</div>
+                            <div className="cursor-pointer"><AddIcon/></div>
+                        </div>
+                        <div className="mt-5">
+                            
+                            {/* each experience -> */}
+                            <div className="p-2 border-t-1 border-gray-300 flex justify-between">
+                                <div>
+                                    <div className="font-semibold text-lg">Software Developer</div>
+                                    <div className="text-gray-700">XYZ Company</div>
+                                    <div className="text-sm text-gray-500">Jan 2020 - Present . 4 yrs</div>
+                                    <div className="text-sm text-gray-500">Location: Remote</div>
+                                </div>
+                                <div className="cursor-pointer"><EditIcon/></div>
+                            </div>
+
+                        </div>
+                    </Card>
+                </div>
+
             </div>
 
             {/* right side ad */}

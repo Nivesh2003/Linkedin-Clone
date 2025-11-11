@@ -4,7 +4,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/Share';
-function Posts() {
+const Posts = (profile) => {
     const [seeMore, setSeeMore] = useState(false);
     const [loadComment, setLoadComment] = useState(false);
     const handleSendComment = (e) => {
@@ -43,6 +43,7 @@ function Posts() {
         </div>
 
         {/* like comment buttons */}
+        { !profile &&
         <div className="flex p-1">
             <div className="w-[33%] justify-center flex gap-2 items-center border-r-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-100">
                 <ThumbUpIcon sx={{color:"blue",fontSize:22}}/> <span>Like</span>
@@ -53,7 +54,7 @@ function Posts() {
             <div className="w-[33%] justify-center flex gap-2 items-center border-r-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-100">
                 <ShareIcon sx={{fontSize:22}}/> <span>Share</span>
             </div>
-        </div>
+        </div> }
 
         {/* comments box */}
         { loadComment &&

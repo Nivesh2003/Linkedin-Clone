@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Advertisement from '../../components/Cards/Advertisement'
 import Card from '../../components/Cards/Card'
 import Posts from '../../pages/Feeds/Posts'
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
+import Model from '../../components/Modal/Modal';
+import Imagemodel from '../../components/Modal/Imagemodel';
+import EditInfoModel from '../../components/Modal/EditInfoModel';
 function Profile() {
+    const [imageSetModal,setImageSetModal]=useState(false);
+    const [circularImage,setCircularImage]=useState(false);
+    
+    const [infoModel,setInfoModel]=useState(false);
+
+    const handleInfoModel=()=>{
+        setInfoModel(!infoModel);
+    }
+
+    const handleImageSetModal=()=>{
+        setImageSetModal(!imageSetModal);
+    }
+    const handleOnEditCover = () =>{
+        setImageSetModal(true);
+        setCircularImage(false);
+    }
+    const handleCircularImage=()=>{
+        setCircularImage(true);
+        setImageSetModal(true);
+    }
   return (
     <div className="px-5 xl:px-50 py-5 mt-5 flex flex-col gap-5 w-full pt-12 bg-gray-100">
         <div className="flex justify-between gap-3">
@@ -15,15 +38,15 @@ function Profile() {
                     <Card padding={0}>
                         <div className="w-full h-fit">
                             <div className="relative w-full h-[200px]">
-                                <div className="absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white"><EditIcon sx={{color:'black'}}/></div>
+                                <div onClick={handleOnEditCover} className="absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white"><EditIcon sx={{color:'black'}}/></div>
                                 <img className='w-full h-[200px] rounded-tr-lg rounded-tl-lg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL_P5fFeF-3Bk3Qsw8ecIwKMLQcCm7rzPqsA&s" alt="" />
-                                <div className="absolute object-cover top-24 left-6 z-10">
+                                <div onClick={handleCircularImage} className="absolute object-cover top-24 left-6 z-10">
                                     <img className='rounded-full border-2 border-white cursor-pointer w-35 h-35' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy_JmafxKbli9Es5QUvL6d-qIdOd5RmExsvA&s" alt="" />
                                 </div>
                             </div>
 
                             <div className="mt-10 relative px-8 py-2">
-                                <div className="absolute top-0 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white cursor-pointer"><EditIcon sx={{color:'black'}}/></div>
+                                <div onClick={handleInfoModel} className="absolute top-0 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white cursor-pointer"><EditIcon sx={{color:'black'}}/></div>
                                 <div className='w-full'>
                                     <div className='text-2xl font-semibold'>Dummy user</div>
                                     <div className='text-gray-700'>I am a dummy user</div>
@@ -128,6 +151,20 @@ function Profile() {
                 </div>
             </div>
         </div>
+
+        {/* models rendering */}
+        {imageSetModal &&
+        <Model title='Upload Image' closeModel={handleImageSetModal}>
+            <Imagemodel isCircular={circularImage}/>
+        </Model> }
+
+        {infoModel &&
+        <Model title='Edit Info' closeModel={handleInfoModel}>
+            <EditInfoModel/>
+        </Model>
+        }
+
+
     </div>
   )
 }

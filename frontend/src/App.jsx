@@ -12,6 +12,8 @@ import Network from './pages/MyNetwork/Network';
 import Resume from './pages/Resume/Resume';
 import Messages from './pages/Messages/Messages';
 import Profile from './pages/Profile/Profile';
+import Activities from './pages/Profile/Activities';
+import SingleActivity from './pages/Profile/SingleActivity';
 
 function App() {
 const isLogin = true;
@@ -30,6 +32,8 @@ const isLogin = true;
         <Route path='/resume' element = {<Resume/>}/>
         <Route path='/message' element = {<Messages/>}/>
         <Route path='/profile/:id' element={<Profile/>}/>
+        <Route path='/profile/:id/activities' element={<Activities/>}/>
+        <Route path='/profile/:id/activities/:postId' element={<SingleActivity/>}/>
       </Routes>
     
       <Footer/>

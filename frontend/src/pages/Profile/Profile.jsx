@@ -3,15 +3,37 @@ import Advertisement from '../../components/Cards/Advertisement'
 import Card from '../../components/Cards/Card'
 import Posts from '../../pages/Feeds/Posts'
 import AddIcon from '@mui/icons-material/Add';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import EditIcon from '@mui/icons-material/Edit';
 import Model from '../../components/Modal/Modal';
 import Imagemodel from '../../components/Modal/Imagemodel';
 import EditInfoModel from '../../components/Modal/EditInfoModel';
+import Aboutmodal from '../../components/Modal/Aboutmodal';
+import Experiencemodal from '../../components/Modal/Experiencemodal';
+import Messagemodal from '../../components/Modal/Messagemodal';
 function Profile() {
     const [imageSetModal,setImageSetModal]=useState(false);
     const [circularImage,setCircularImage]=useState(false);
     
     const [infoModel,setInfoModel]=useState(false);
+
+    const [aboutModal,setAboutModal] = useState(false);
+
+    const [experienceModal,setExperienceModal] = useState(false);
+
+    const [messageModal,setMessageModal] = useState(false);
+
+    const handleMessageModal=()=>{
+        setMessageModal(!messageModal);
+    }
+
+    const handleExpModal = ()=>{
+        setExperienceModal(!experienceModal);
+    }
+
+    const handleAboutModel = () =>{
+        setAboutModal(!aboutModal);
+    }
 
     const handleInfoModel=()=>{
         setInfoModel(!infoModel);
@@ -60,7 +82,7 @@ function Profile() {
                                             <div className="cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold">Logout</div>
                                         </div>
                                         <div className='my-5 flex gap-5'>
-                                            <div className="cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold">Message</div>
+                                            <div onClick={handleMessageModal} className="cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold">Message</div>
                                             <div className="cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold">Connect</div>
                                         </div>
                                     </div>
@@ -75,7 +97,7 @@ function Profile() {
                     <Card padding={1}>
                         <div className="flex justify-between items-center">
                             <div className='text-xl'>About</div>
-                            <div className="cursor-pointer "><EditIcon sx={{color:'black'}}/></div>
+                            <div onClick={handleAboutModel} className="cursor-pointer "><EditIcon sx={{color:'black'}}/></div>
                         </div>
                         <div className='text-sm w-[80%] text-gray-700'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum, cupiditate. Doloremque hic delectus iusto possimus repudiandae sunt deserunt neque, quo suscipit illo, atque eligendi impedit magnam voluptates facilis sed officia?</div>
                     </Card>
@@ -115,6 +137,11 @@ function Profile() {
                                 <Posts profile={1}/>
                             </div>
                         </div>
+
+                        {/* show all posts btn */}
+                        <div className="w-full flex justify-center items-center">
+                            <div className="cursor-pointer p-2 rounded-xl cursor-pointer hover:bg-gray-300">Show all posts <ArrowRightAltIcon/></div>
+                        </div>
                     </Card>
                 </div>
 
@@ -123,7 +150,7 @@ function Profile() {
                     <Card padding={1}>
                     <div className="flex justify-between items-center">
                             <div className='text-xl'>Experience</div>
-                            <div className="cursor-pointer"><AddIcon/></div>
+                            <div onClick={handleExpModal} className="cursor-pointer"><AddIcon/></div>
                         </div>
                         <div className="mt-5">
                             
@@ -163,8 +190,21 @@ function Profile() {
             <EditInfoModel/>
         </Model>
         }
+        { aboutModal &&
+        <Model title="Edit About" closeModel={handleAboutModel}>
+            <Aboutmodal/>
+        </Model> }
 
-
+        {experienceModal &&
+        <Model title="Edit experience" closeModel={handleExpModal}>
+            <Experiencemodal/>
+        </Model>
+        }
+        {messageModal &&
+        <Model title="Send Message" closeModel={handleMessageModal}>
+            <Messagemodal/>
+        </Model>
+        }
     </div>
   )
 }

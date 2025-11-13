@@ -8,6 +8,7 @@ import Advertisement from '../../components/Cards/Advertisement';
 import Posts from './Posts';
 import Modal from '../../components/Modal/Modal';
 import Addmodel from '../../components/Modal/Addmodel';
+import Loader from '../../components/Loader/Loader';
 function Feeds() {
     const [addPostModal, setAddPostModal] = useState(false);
     const handleOpenAddPostModal=()=>{
@@ -87,6 +88,7 @@ function Feeds() {
             <Addmodel/>
         </Modal> 
         }
+        <Loader/>
     </div>
   )
 }

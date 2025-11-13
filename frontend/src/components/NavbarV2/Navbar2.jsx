@@ -53,10 +53,12 @@ function Navbar2() {
                     <div className={`text-sm text-gray-500 ${location.pathname==='/messages'?"border-b-3":""}`}>Message</div>
                 </div>
                 </Link>
+                <Link to={'/notification'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <div><NotificationsIcon sx={{color:location.pathname==='/notification'?"black":"grey"}}/> <span className='p-1 rounded-full text-sm bg-red-700 text-white'>1</span></div>
                     <div className={`text-sm text-gray-500 ${location.pathname==='/notification'?"border-b-3":""}`}>Notifications</div>
                 </div>
+                </Link>
                 <Link to={'/profile/1'}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="" className='rounded-full w-7 h-7'/>

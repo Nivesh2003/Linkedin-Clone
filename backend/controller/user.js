@@ -80,3 +80,51 @@ exports.login=async(req,res)=>{
         res.status(500).json({error:"Server error"});
     }
 }
+
+//LOG OUT API
+exports.logout = async(req,res)=>{
+    try{
+        res.clearCookie('token',cookieOptions).json({message:"Logged out successfully"})
+    }catch(err){
+            console.error(err);
+        res.status(500).json({error:"Server error"});
+    }
+}
+//Update user api
+exports.updateUser = async(req,res)=>{
+    try {
+        const {user} =req.body;
+        const isExist = await User.findById(req.user._id);
+        if(!isExist){
+            return res.status(400).json({error:"User doesn't exists"});
+        }
+        const updateData = await User.findByIdAndUpdate(isExist._id,user);
+        const userData = await User.findById(req.user._id).select("-password");
+        res.status(200).json({
+            message:"User updated!",
+            user: userData
+        })
+    } catch (err) {
+         console.error(err);
+        res.status(500).json({error:"Server error"});
+    }
+}
+
+
+//Profile details fetch api
+exports.getUserById = async(req,res)=>{
+    try{
+        const {id} = req.params;
+        const isExist = await User.findById(id);
+        if(!isExist){
+            return res.status(400).json({error:"No such User Exists"});
+        }
+        return res.status(200).json({
+            message:"User fetched successfully",
+            user:isExist
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}

@@ -1,12 +1,19 @@
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 require('dotenv').config();
 require ('./connection')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-}   );
+const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.use(express.json());
+app.use(cookieParser());
+
+//Routes
+const userRoute = require('./routes/user')
+app.use('/api/auth',userRoute)
+
+
+app.listen(port, () => {
+  console.log('Server is running on port',port); 
 });

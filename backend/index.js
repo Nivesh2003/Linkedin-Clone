@@ -13,6 +13,8 @@ app.use(cookieParser());
 const userRoute = require('./routes/user')
 app.use('/api/auth',userRoute)
 
+const postRoute = require('./routes/post')
+app.use('/api/post',postRoute)
 
 app.listen(port, () => {
   console.log('Server is running on port',port); 

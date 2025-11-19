@@ -16,6 +16,9 @@ app.use('/api/auth',userRoute)
 const postRoute = require('./routes/post')
 app.use('/api/post',postRoute)
 
+const notifRoute = require('./routes/notification')
+app.use('/api/notif',notifRoute)
+
 app.listen(port, () => {
   console.log('Server is running on port',port); 
 });

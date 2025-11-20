@@ -7,6 +7,8 @@ route.post('/register',userController.register);
 route.post('/login',userController.login);
 route.post('/google',userController.loginViaGoogle);
 route.post('/logout',Authentication.auth,userController.logout)
+route.post('/sFriendReq',Authentication.auth,userController.sendFriendRequest)
+route.post('/acceptReq',Authentication.auth,userController.acceptFriendReq)
 
 //phle auth middleware chlega if success then update function will execute
 route.put('/update',Authentication.auth,userController.updateUser);
@@ -17,7 +19,12 @@ route.get('/self',Authentication.auth,(req,res)=>{
         user:req.user
     })
 })
+route.get('/findUser',Authentication.auth,userController.findUser)
+route.get('/friendsList',Authentication.auth,userController.getFriendsList)
+route.get('/pendingList',Authentication.auth,userController.getPendingList)
 
+
+route.delete('/removeFriend',Authentication.auth,userController.removeFriend);
 
 
 module.exports = route;

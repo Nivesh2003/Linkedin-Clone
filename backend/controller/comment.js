@@ -4,7 +4,7 @@ const notifModel = require('../models/notification')
 
 exports.commentPost = async (req,res)=>{
     try{
-        const userId = req.user._id;
+        const userId = req.user._id; //Auth middleware se ayegi
         const {postId,comment} = req.body;
         const postExist = await postModel.findById(postId).populate("user");
         if(!postExist){

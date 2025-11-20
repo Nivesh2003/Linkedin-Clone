@@ -2,6 +2,7 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {OAuth2Client} = require('google-auth-library');
+const notifModel = require('../models/notification');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const cookieOptions = {
@@ -124,6 +125,134 @@ exports.getUserById = async(req,res)=>{
             user:isExist
         });
     } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}
+
+
+//Finding users in search via debouncing
+exports.findUser = async (req,res)=>{
+    try{
+        let {query} = req.query;
+        const users = await User.find({
+            $and:[
+                {_id:{$ne:req.user._id}},
+                {
+                    $or:[
+                        {f_name:{$regex:new RegExp(`^${query}`,'i')}},
+                        {email:{$regex:new RegExp(`^${query}`,'i')}}
+                    ]
+                }
+            ]
+        })
+        return res.status(201).json({
+            message:"Fetched member",
+            users:users
+        })
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}
+
+
+//Sending friend request
+exports.sendFriendRequest = async (req,res)=>{
+    try{
+        const sender = req.user._id;
+        const {receiver} = req.body;
+        const userExists = await User.findById(receiver);
+        if(!userExists){
+            return res.status(400).json({
+                error:"No such user exist"
+            })
+        }
+        const index = req.user.friends.findIndex(id=>id.equals(receiver));
+        if(index!==-1){
+            return res.status(400).json({
+                error:"Already friend"
+            });
+        }
+        const lastIndex = userExists.pendingRequests.findIndex(id=>id.equals(req.user._id));
+        if(lastIndex!==-1){
+            return res.status(400).json({
+                error:"Already sent request"
+            })
+        }
+        userExists.pendingRequests.push(sender); //Create a friend req
+
+        //Create notification
+        let content = `${req.user.f_name} has sent you friend request`;
+        const notification = new notifModel({sender:sender,receiver:receiver,content,type:"friendRequest"})
+        await notification.save();
+        await userExists.save();
+        return res.status(200).json({
+            message:"Friend req sent"
+        })
+    }catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}
+
+//Accepting friend req
+exports.acceptFriendReq = async (req,res)=>{
+    try {
+        let {friendId} = req.body;
+        let selfId = req.user._id;
+        const friendData = await User.findById(friendId);
+        if(!friendData){
+            return res.status(400).json({
+                error:"No such user exists"
+            })
+        }
+        const index = req.user.pendingRequests.findIndex(id=>id.equals(friendId));
+        if(index !== -1){
+            req.user.pendingRequests.splice(index,1);
+        } else {
+            return res.status(400).json({
+                error:"No such request from user"
+            })
+        }
+        req.user.friends.push(friendId);
+        friendData.friends.push(req.user._id);
+
+        let content = `${req.user.f_name} has accepted your friend request`;
+        const notification = new notifModel({sender:selfId,receiver:friendId,content,type:"friendRequest"})
+        await notification.save();
+        await friendData.save();
+        await req.user.save();
+        return res.status(200).json({
+            message:"You both are now friends!"
+        })
+    }catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}
+
+//Get friends list 
+exports.getFriendsList = async (req,res)=>{
+    try {
+        let friendsList = await req.user.populate('friends');
+        return res.status(200).json({
+            friends:friendsList.friends //sirf friends list dega
+        })
+    }catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}
+
+//Get pending friends list 
+exports.getPendingList = async (req,res)=>{
+    try {
+        let pendingList = await req.user.populate('pendingRequests');
+        return res.status(200).json({
+            pendingList:pendingList.pendingRequests //sirf friends list dega
+        })
+    }catch (err) {
         console.error(err);
         res.status(500).json({ error: "Server error" }); 
     }

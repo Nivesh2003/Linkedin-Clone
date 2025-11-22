@@ -14,7 +14,6 @@ const cookieOptions = {
 //User registration function (using email and password)
 exports.register = async(req,res) =>{
     try {
-        console.log(req.body);
         let {email,password,f_name} = req.body;
         let isUserExist = await User.findOne({email})
         if(isUserExist){

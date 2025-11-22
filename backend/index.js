@@ -25,6 +25,9 @@ app.use('/api/comment',commentRoute)
 const convoRoute = require('./routes/convo')
 app.use('/api/convo',convoRoute)
 
+const messageRoute = require('./routes/message')
+app.use('/api/message',messageRoute)
+
 app.listen(port, () => {
   console.log('Server is running on port',port); 
 });

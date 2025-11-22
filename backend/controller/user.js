@@ -257,3 +257,44 @@ exports.getPendingList = async (req,res)=>{
         res.status(500).json({ error: "Server error" }); 
     }
 }
+
+//Remove friend
+exports.removeFriend =  async (req,res)=>{
+    try{
+        let selfId = req.user._id;
+        let {friendId} = req.params;
+        const userExists = await User.findById(friendId);
+        if(!userExists){
+            return res.status(400).json({
+                error:"No such user exists"
+            })
+        }
+        //checking whether he/she is in friend list
+        const index = req.user.friends.findIndex(id=>id.equals(friendId));
+        const friendIndex = userExists.friends.findIndex(id=>id.equals(selfId));
+
+        if(index !== -1){
+            req.user.friends.splice(index,1);
+        } else {
+            return res.status(400).json({
+                error:"No any request from such user"
+            })
+        }
+        if(friendIndex !== -1){
+            userExists.friends.splice(friendIndex,1);
+        } else {
+            return res.status(400).json({
+                error:"No any request from such user"
+            })
+        }
+        await req.user.save();
+        await userExists.save();
+        return res.status(200).json({
+            message:"You both are disconnected now"
+        })
+        
+    }catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" }); 
+    }
+}

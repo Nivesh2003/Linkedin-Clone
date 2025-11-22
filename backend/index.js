@@ -22,6 +22,9 @@ app.use('/api/notif',notifRoute)
 const commentRoute = require('./routes/comment')
 app.use('/api/comment',commentRoute)
 
+const convoRoute = require('./routes/convo')
+app.use('/api/convo',convoRoute)
+
 app.listen(port, () => {
   console.log('Server is running on port',port); 
 });

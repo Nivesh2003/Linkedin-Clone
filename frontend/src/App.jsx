@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import {Routes,Route} from 'react-router-dom';
+import { useState,useEffect } from 'react'
+import {Routes,Route,Navigate} from 'react-router-dom';
 import './App.css'
 import Navbar1 from './components/NavbarV1/Navbar1'
 import Landingpage from './pages/Landingpage/Landingpage'
@@ -16,18 +16,24 @@ import Activities from './pages/Profile/Activities';
 import SingleActivity from './pages/Profile/SingleActivity';
 import Notification from './pages/Notifications/Notification';
 
-function App() {
-const isLogin = true;
+import axios from 'axios';
 
+function App() {
+  const[isLogin,setIsLogin] = useState(localStorage.getItem("isLogin"));
+
+  //Ise login comp me bhjege
+  const changeLoginValue = (val)=>{
+    setIsLogin(val)
+  }
   return (
     <>
      {/* Outer start */}
      <div className='bg-gray-100 w-[100%] h-[100%] box-border'>
       {isLogin ? <Navbar2/> : <Navbar1/>}
       <Routes>
-        <Route path='/' element={<Landingpage/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={isLogin?<Navigate to={'/feeds'}/>:<Landingpage/>}/>
+        <Route path='/signup' element={isLogin?<Navigate to={'/feeds'}/>:<Signup/>}/>
+        <Route path='/login' element={isLogin?<Navigate to={'/feeds'}/>:<Login logIn={changeLoginValue}/>}/>
         <Route path='/feeds' element={<Feeds/>}/>
         <Route path='/mynetwork' element = {<Network/>}/>
         <Route path='/resume' element = {<Resume/>}/>

@@ -43,7 +43,7 @@ exports.loginViaGoogle=async(req,res)=>{
         })
         const payload = ticket.getPayload();
         const {sub,email,name,picture} = payload;
-        const userExists = await User.findOne({email});
+        let userExists = await User.findOne({email});
         if (!userExists) {
             //Register new user
             userExists = await User.create({

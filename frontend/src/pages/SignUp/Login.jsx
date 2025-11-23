@@ -30,7 +30,7 @@ const Login = (props) => {
             <div className='w-[85%] md:w-[28%] shadow-xl rounded-sm box p-10'>
                 <div className="text-3xl text-center">Sign In</div>
                 <div className="my-3">
-                    <Googlelogincomponent/>
+                    <Googlelogincomponent logIn={props.logIn}/>
                 </div>
                 {/* Divider */}
                 <div className="flex flex-row items-center gap-2">

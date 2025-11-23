@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 import Googlelogincomponent from '../../components/GoogleLogin/Googlelogincomponent';
-function Landingpage() {
+function Landingpage(props) {
   return (
     <div className='my-4 py-[50px] md:py-[120px] px-5 md:flex justify-between'>
         <div className="md:w-[40%]">
@@ -9,7 +9,7 @@ function Landingpage() {
                 Welcome to your professional community
             </div>
             <div className="my-3 flex mx-auto mt-[20px] bg-white gap-2 rounded-3xl w-[70%] text-black cursor-pointer">
-                <Googlelogincomponent/>
+                <Googlelogincomponent logIn={props.logIn}/>
             </div>
 
             <div className="flex mx-auto mt-[20px] py-2 px-2 bg-white gap-2 rounded-3xl items-center w-[70%] justify-center text-black hover:bg-gray-100 border-2 cursor-pointer">

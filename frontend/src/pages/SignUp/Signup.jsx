@@ -5,7 +5,7 @@ import { useState } from 'react'
 import {ToastContainer,toast} from 'react-toastify'; //Used to create a pop up type error in top corner
 import axios from 'axios';
 
-function Signup() {
+function Signup(props) {
   const nav = useNavigate();
   const [registerField,setRegisterField] = useState({email:"" ,password:"", f_name:""})
 
@@ -60,7 +60,7 @@ function Signup() {
         <div className="flex flex-row items-center gap-2">
           <div className="border-b-1 border-gray-400 w-[45%] "/>or <div className="border-b-1 border-gray-400 w-[45%] "/>
         </div>
-        <Googlelogincomponent/>
+        <Googlelogincomponent logIn={props.logIn}/>
       </div>
        
        <div className="mt-4 mb-10">Already on LinkedIn? <Link to={'/login'}><span className='text-blue-800 hover:underline cursor-pointer'>Sign In</span></Link></div>
